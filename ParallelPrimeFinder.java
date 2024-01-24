@@ -99,11 +99,21 @@ class PrimeThread extends Thread {
         if (num < 2) {
             return false;
         }
-        for (int i = 2; i <= Math.sqrt(num); i++) {
-            if (num % i == 0) {
+        if (num == 2 || num == 3) {
+            return true;
+        }
+        if (num % 2 == 0 || num % 3 == 0) {
+            return false;
+        }
+
+        int sqrtNum = (int) Math.sqrt(num) + 1;
+        for (int i = 5; i <= sqrtNum; i += 6) {
+            if (num % i == 0 || num % (i + 2) == 0) {
                 return false;
             }
         }
+
         return true;
     }
+
 }
